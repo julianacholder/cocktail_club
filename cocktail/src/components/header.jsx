@@ -5,6 +5,13 @@ import '../assets/css/hero.css';
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
 
@@ -34,6 +41,11 @@ const Header = () => {
     document.body.style.overflow = 'auto';
   };
 
+  const handleNavClick = (sectionId) => {
+    scrollToSection(sectionId);
+    closeMenu();
+  };
+
   return (
     <header className="header-main">
       <div className="logo">
@@ -42,10 +54,10 @@ const Header = () => {
 
       {/* Desktop Menu */}
       <nav className="desktop-menu">
-        <a href="#recipes">Recipes</a>
-        <a href="#recipes">New Cocktails</a>
-        <a href="#recipes">Random</a>
-        <a href="#recipes">Most Popular</a>
+        <a onClick={() => scrollToSection('recipes')} style={{ cursor: 'pointer' }}>Recipes</a>
+        <a onClick={() => scrollToSection('new')} style={{ cursor: 'pointer' }}>New Cocktails</a>
+        <a onClick={() => scrollToSection('random')} style={{ cursor: 'pointer' }}>Random</a>
+        <a onClick={() => scrollToSection('most')} style={{ cursor: 'pointer' }}>Most Popular</a>
       </nav>
 
       {/* Hamburger Button */}
@@ -58,10 +70,10 @@ const Header = () => {
       {/* Full Screen Mobile Menu */}
       <div className={`mobile-menu-overlay ${menuOpen ? 'active' : ''}`}>
         <nav className="mobile-menu">
-          <a href="#recipes" onClick={closeMenu}>Recipes</a>
-          <a href="#new-cocktails" onClick={closeMenu}>New Cocktails</a>
-          <a href="#random" onClick={closeMenu}>Random</a>
-          <a href="#most-popular" onClick={closeMenu}>Most Popular</a>
+          <a onClick={() => handleNavClick('recipes')} style={{ cursor: 'pointer' }}>Recipes</a>
+          <a onClick={() => handleNavClick('new')} style={{ cursor: 'pointer' }}>New Cocktails</a>
+          <a onClick={() => handleNavClick('random')} style={{ cursor: 'pointer' }}>Random</a>
+          <a onClick={() => handleNavClick('most')} style={{ cursor: 'pointer' }}>Most Popular</a>
         </nav>
       </div>
     </header>

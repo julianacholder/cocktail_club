@@ -89,12 +89,14 @@ const Tab = () => {
         <div
           className={`tab ${activeTab === 'Random' ? 'active' : ''}`}
           onClick={() => handleTabClick('Random')}
+          id='random'
         >
           Random
         </div>
         <div
           className={`tab ${activeTab === 'NewCocktails' ? 'active' : ''}`}
           onClick={() => handleTabClick('NewCocktails')}
+          id='new'
         >
           New Cocktails
         </div>
@@ -102,6 +104,7 @@ const Tab = () => {
         <div
           className={`tab ${activeTab === 'mostPopular' ? 'active' : ''}`}
           onClick={() => handleTabClick('mostPopular')}
+          id='most'
         >
           Most Popular
         </div>
