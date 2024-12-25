@@ -69,9 +69,7 @@ const HeroPage = () => {
   };
 
   const SlideContent = ({ image, isCherry = false, content }) => (
-  
     <div className={`hero-main transition-all duration-700 ease-in-out ${isCherry ? 'red-background' : ''}`}>
-       <Header />
       <div className='hero-text animate-fadeIn'>
         <h1 className="animate-slideUp">{content.title}</h1>
         <p className="animate-slideUp delay-200">
@@ -91,7 +89,7 @@ const HeroPage = () => {
           <h2>{content.rating2Title}</h2>
         </div>
       </div>
-      
+
       <div className={`hero-img ${isCherry ? 'cherry' : ''} animate-fadeIn delay-300`}>
         <img 
           src={image} 
@@ -99,7 +97,7 @@ const HeroPage = () => {
           className="hover:scale-105 transition-transform duration-500"
         />
       </div>
-      
+
       <div 
         className='play-video animate-fadeIn delay-500 hover:scale-110 transition-transform'
         onClick={toggleVideo}
@@ -130,7 +128,7 @@ const HeroPage = () => {
           </div>
         </div>
       )}
-      
+
       <div className="feel animate-fadeIn delay-600">
         <img 
           src={feel} 
@@ -157,44 +155,47 @@ const HeroPage = () => {
   };
 
   return (
-    <Swiper
-      spaceBetween={0}
-      slidesPerView={1}
-      effect="fade"
-      autoplay={{
-        delay: 90000,
-        disableOnInteraction: false,
-      }}
-      loop={true}
-      modules={[Autoplay, EffectFade, EffectCreative]}
-      creativeEffect={{
-        prev: {
-          translate: [0, 0, -400],
-        },
-        next: {
-          translate: ['100%', 0, 0],
-        },
-      }}
-      className="hero-swiper"
-      onSwiper={(swiper) => {
-        swiperRef.current = swiper;
-      }}
-    >
-      <SwiperSlide>
-        <SlideContent 
-          image={Margarita} 
-          content={slideContents.margarita} 
-        />
-      </SwiperSlide>
+    <>
+      <Header />  {/* Render Header once outside Swiper */}
+      <Swiper
+        spaceBetween={0}
+        slidesPerView={1}
+        effect="fade"
+        autoplay={{
+          delay: 5000,
+          disableOnInteraction: false,
+        }}
+        loop={true}
+        modules={[Autoplay, EffectFade, EffectCreative]}
+        creativeEffect={{
+          prev: {
+            translate: [0, 0, -400],
+          },
+          next: {
+            translate: ['100%', 0, 0],
+          },
+        }}
+        className="hero-swiper"
+        onSwiper={(swiper) => {
+          swiperRef.current = swiper;
+        }}
+      >
+        <SwiperSlide>
+          <SlideContent 
+            image={Margarita} 
+            content={slideContents.margarita} 
+          />
+        </SwiperSlide>
 
-      <SwiperSlide>
-        <SlideContent 
-          image={cherry} 
-          isCherry={true}
-          content={slideContents.cherry} 
-        />
-      </SwiperSlide>
-    </Swiper>
+        <SwiperSlide>
+          <SlideContent 
+            image={cherry} 
+            isCherry={true}
+            content={slideContents.cherry} 
+          />
+        </SwiperSlide>
+      </Swiper>
+    </>
   );
 };
 
